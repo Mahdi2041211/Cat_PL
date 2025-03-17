@@ -35,5 +35,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Coder\Forms\" />
+    <Folder Include="Coder\Models\" />
+    <Folder Include="Database\" />
+    <Folder Include="Extras\Controllers\" />
+    <Folder Include="Extras\Models\" />
+    <Folder Include="Extras\Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
