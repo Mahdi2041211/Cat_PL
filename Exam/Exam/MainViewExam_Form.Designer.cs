@@ -315,7 +315,7 @@
             guna2Button2.FillColor = Color.Transparent;
             guna2Button2.Font = new Font("Algerian", 28.2F);
             guna2Button2.ForeColor = Color.IndianRed;
-            guna2Button2.Location = new Point(706, 232);
+            guna2Button2.Location = new Point(18, 166);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges7;
             guna2Button2.Size = new Size(232, 55);
@@ -393,7 +393,7 @@
             guna2Separator6.Anchor = AnchorStyles.Top;
             guna2Separator6.BackColor = Color.Red;
             guna2Separator6.FillColor = Color.Red;
-            guna2Separator6.Location = new Point(-63, 232);
+            guna2Separator6.Location = new Point(-73, 232);
             guna2Separator6.Name = "guna2Separator6";
             guna2Separator6.Size = new Size(1239, 3);
             guna2Separator6.TabIndex = 9;
@@ -497,7 +497,7 @@
             guna2Separator2.Anchor = AnchorStyles.Top;
             guna2Separator2.BackColor = Color.Red;
             guna2Separator2.FillColor = Color.Red;
-            guna2Separator2.Location = new Point(34, 42);
+            guna2Separator2.Location = new Point(24, 42);
             guna2Separator2.Name = "guna2Separator2";
             guna2Separator2.Size = new Size(942, 3);
             guna2Separator2.TabIndex = 2;
@@ -505,7 +505,7 @@
             // buttonWinForm4
             // 
             buttonWinForm4.Anchor = AnchorStyles.Top;
-            buttonWinForm4.Location = new Point(485, 4);
+            buttonWinForm4.Location = new Point(475, 4);
             buttonWinForm4.Name = "buttonWinForm4";
             buttonWinForm4.Size = new Size(106, 32);
             buttonWinForm4.TabIndex = 0;
