@@ -1,6 +1,9 @@
 using Comunity2.Data;
 using Comunity2.Models;
+using Comunity2.Services;
+using Comunity2.Services.UserService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,9 +21,10 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<User_Information>();
+//Send Message For Email
+//builder.Services.AddTransient<IEmailSender, EmailConfirm>();
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

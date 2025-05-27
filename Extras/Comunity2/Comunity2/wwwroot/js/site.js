@@ -12,10 +12,26 @@ function previewImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('sidebarToggleBtn');
 
-    sidebar.classList.toggle('sidebar-collapsed');
+    const isCollapsed = sidebar.classList.toggle('sidebar-collapsed');
     toggleBtn.classList.toggle('toggled');
+
+    // حفظ الحالة في localStorage
+    localStorage.setItem('sidebar-collapsed', isCollapsed);
+}
+
+// استعادة الحالة عند تحميل الصفحة
+window.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggleBtn');
+
+    const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+
+    if (isCollapsed) {
+        sidebar.classList.add('sidebar-collapsed');
+        toggleBtn.classList.add('toggled');
     }
+});

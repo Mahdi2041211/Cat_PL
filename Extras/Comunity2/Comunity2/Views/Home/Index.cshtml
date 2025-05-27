@@ -1,7 +1,55 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Comunity2.Models.Post>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المنشورات</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="~/css/DesginPost.css" />
+    <script src="~/js/javascript.js"></script>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+</head>
+<body>
+    <header>
+        <div class="profile">
+            <img src="~/image/1904670-account-avatar-contact-picture-profile-user-user-icon_122520.png" alt="صورة المستخدم">
+        </div>
+        <div class="news">News</div>
+    </header>
 
+    <main>
+        <div class="post">
+            <div class="post-header">
+                <img src="user1.jpg" alt="صورة المستخدم">
+                <div class="post-info">
+                    <h3>اسم المستخدم</h3>
+                    <span>20 مايو 2025</span>
+                </div>
+            </div>
+            <hr>
+            <p>هذا نص المنشور الأول...</p>
+            <div class="post-actions">
+                <button class="like-btn">👍 Like</button>
+                <button class="comment-btn">💬 Comment</button>
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="post-header">
+                <img src="user2.jpg" alt="صورة المستخدم">
+                <div class="post-info">
+                    <h3>اسم المستخدم 2</h3>
+                    <span>24 مايو 2025</span>
+                </div>
+            </div>
+            <hr>
+            <p>هذا نص المنشور الثاني...</p>
+            <div class="post-actions">
+                <button class="like-btn">👍 Like</button>
+                <button class="comment-btn">💬 Comment</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

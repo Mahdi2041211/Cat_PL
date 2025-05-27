@@ -4,9 +4,9 @@ namespace Comunity2.Models.Repositories
 {
     public interface IRepository<Type> where Type : class
     {
-        public Task Delete(Type T);
-        public Task<Type> Add();
-        public Task<Type>GetAll();
-        
+        public void Delete(Type T);
+        public Task Add(Type T);
+        public Task GetAll(Type T);
+        public void Update(Type T);
     }
 }

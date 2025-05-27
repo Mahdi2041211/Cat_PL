@@ -4,6 +4,7 @@ using Comunity2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Comunity2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250523125541_1th")]
+    partial class _1th
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +39,6 @@ namespace Comunity2.Data.Migrations
                     b.Property<int>("Count_Likes")
                         .HasColumnType("int");
 
-                    b.Property<int>("Post_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,94 +49,9 @@ namespace Comunity2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Post_Id");
-
                     b.HasIndex("User_Id");
 
-                    b.ToTable("comments");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.DoQuis", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DoQis_Date_Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Mark")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Quis_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("User_Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Quis_Id");
-
-                    b.HasIndex("User_Id");
-
-                    b.ToTable("DoQuis");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Post_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Post_Id");
-
-                    b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Likies", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Comment_Id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Like_Date_Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Post_Id")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Status_Like")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("User_Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Comment_Id");
-
-                    b.HasIndex("Post_Id");
-
-                    b.HasIndex("User_Id");
-
-                    b.ToTable("Likies");
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("Comunity2.Models.Post", b =>
@@ -166,85 +81,6 @@ namespace Comunity2.Data.Migrations
                     b.HasIndex("User_Id");
 
                     b.ToTable("posts");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Quis", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.Property<DateTime>("Quis_Date_Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("User_Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("User_Id");
-
-                    b.ToTable("Quis");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Quistion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Answer1")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("Answer2")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("Answer3")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("Answer4")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Correct_Answer")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<int>("Quis_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Quis_Id");
-
-                    b.ToTable("Quistions");
                 });
 
             modelBuilder.Entity("Comunity2.Models.User", b =>
@@ -464,76 +300,11 @@ namespace Comunity2.Data.Migrations
 
             modelBuilder.Entity("Comunity2.Models.Comment", b =>
                 {
-                    b.HasOne("Comunity2.Models.Post", "Post")
-                        .WithMany("Comments")
-                        .HasForeignKey("Post_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Comunity2.Models.User", "User")
                         .WithMany("comments")
                         .HasForeignKey("User_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Post");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.DoQuis", b =>
-                {
-                    b.HasOne("Comunity2.Models.Quis", "Quis")
-                        .WithMany("DoQuis")
-                        .HasForeignKey("Quis_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Comunity2.Models.User", "User")
-                        .WithMany("DoQuis")
-                        .HasForeignKey("User_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Quis");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Image", b =>
-                {
-                    b.HasOne("Comunity2.Models.Post", "Post")
-                        .WithMany("Images")
-                        .HasForeignKey("Post_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Post");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Likies", b =>
-                {
-                    b.HasOne("Comunity2.Models.Comment", "Comment")
-                        .WithMany("Likes")
-                        .HasForeignKey("Comment_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Comunity2.Models.Post", "Post")
-                        .WithMany("Likes")
-                        .HasForeignKey("Post_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Comunity2.Models.User", "User")
-                        .WithMany("Likes")
-                        .HasForeignKey("User_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("Post");
 
                     b.Navigation("User");
                 });
@@ -547,28 +318,6 @@ namespace Comunity2.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Quis", b =>
-                {
-                    b.HasOne("Comunity2.Models.User", "User")
-                        .WithMany("Quis")
-                        .HasForeignKey("User_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Quistion", b =>
-                {
-                    b.HasOne("Comunity2.Models.Quis", "Quis")
-                        .WithMany("Quistions")
-                        .HasForeignKey("Quis_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Quis");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -622,36 +371,9 @@ namespace Comunity2.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Comunity2.Models.Comment", b =>
-                {
-                    b.Navigation("Likes");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Post", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Images");
-
-                    b.Navigation("Likes");
-                });
-
-            modelBuilder.Entity("Comunity2.Models.Quis", b =>
-                {
-                    b.Navigation("DoQuis");
-
-                    b.Navigation("Quistions");
-                });
-
             modelBuilder.Entity("Comunity2.Models.User", b =>
                 {
-                    b.Navigation("DoQuis");
-
-                    b.Navigation("Likes");
-
                     b.Navigation("Posts");
-
-                    b.Navigation("Quis");
 
                     b.Navigation("comments");
                 });
