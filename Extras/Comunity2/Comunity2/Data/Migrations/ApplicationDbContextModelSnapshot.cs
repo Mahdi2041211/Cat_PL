@@ -36,9 +36,10 @@ namespace Comunity2.Data.Migrations
                     b.Property<int>("Count_Likes")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
+
                     b.Property<int>("Post_Id")
                         .HasColumnType("int");
+
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -251,8 +252,7 @@ namespace Comunity2.Data.Migrations
                     b.ToTable("Quistions");
                 });
 
-=======
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
+
             modelBuilder.Entity("Comunity2.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -476,8 +476,7 @@ namespace Comunity2.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-=======
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
+
                     b.HasOne("Comunity2.Models.User", "User")
                         .WithMany("comments")
                         .HasForeignKey("User_Id")
@@ -630,7 +629,6 @@ namespace Comunity2.Data.Migrations
                         .IsRequired();
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Comunity2.Models.Comment", b =>
                 {
                     b.Navigation("Likes");

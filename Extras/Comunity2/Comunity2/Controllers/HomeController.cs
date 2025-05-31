@@ -15,12 +15,13 @@ namespace Comunity2.Controllers
 
         public IActionResult Index()
         {
+
                 
             return View();
-            var Post=db.posts.ToList();
+          //  var Post=.posts.ToList();
 
-            return View(Post);
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
+            return View();
+
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,4 @@
-﻿namespace jobs.Models
+﻿namespace Comunity2.Models
 {
     public class SessionManger
     {
