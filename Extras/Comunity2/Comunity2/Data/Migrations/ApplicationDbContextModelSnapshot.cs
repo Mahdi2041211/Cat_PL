@@ -40,8 +40,6 @@ namespace Comunity2.Data.Migrations
                     b.Property<int>("Post_Id")
                         .HasColumnType("int");
 
-=======
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -52,7 +50,6 @@ namespace Comunity2.Data.Migrations
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
                     b.HasIndex("Post_Id");
 
                     b.HasIndex("User_Id");
@@ -141,11 +138,9 @@ namespace Comunity2.Data.Migrations
                     b.HasIndex("User_Id");
 
                     b.ToTable("Likies");
-=======
                     b.HasIndex("User_Id");
 
                     b.ToTable("Comment");
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
                 });
 
             modelBuilder.Entity("Comunity2.Models.Post", b =>
@@ -177,7 +172,6 @@ namespace Comunity2.Data.Migrations
                     b.ToTable("posts");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Comunity2.Models.Quis", b =>
                 {
                     b.Property<int>("Id")
@@ -476,7 +470,6 @@ namespace Comunity2.Data.Migrations
 
             modelBuilder.Entity("Comunity2.Models.Comment", b =>
                 {
-<<<<<<< HEAD
                     b.HasOne("Comunity2.Models.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("Post_Id")
@@ -491,7 +484,6 @@ namespace Comunity2.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
                     b.Navigation("Post");
 
                     b.Navigation("User");
@@ -551,8 +543,6 @@ namespace Comunity2.Data.Migrations
 
                     b.Navigation("Post");
 
-=======
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
                     b.Navigation("User");
                 });
 
@@ -567,7 +557,6 @@ namespace Comunity2.Data.Migrations
                     b.Navigation("User");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Comunity2.Models.Quis", b =>
                 {
                     b.HasOne("Comunity2.Models.User", "User")
@@ -590,8 +579,6 @@ namespace Comunity2.Data.Migrations
                     b.Navigation("Quis");
                 });
 
-=======
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -675,12 +662,6 @@ namespace Comunity2.Data.Migrations
 
                     b.Navigation("Quis");
 
-=======
-            modelBuilder.Entity("Comunity2.Models.User", b =>
-                {
-                    b.Navigation("Posts");
-
->>>>>>> 13c9b9920fd44185efb98d925c7aedc94a1ffdee
                     b.Navigation("comments");
                 });
 #pragma warning restore 612, 618
