@@ -5,7 +5,7 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-@{
+@* @{
     if (@Model.DisplayConfirmAccountLink)
     {
 <p>
@@ -13,11 +13,20 @@
     Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
 </p>
     }
-    else
+
+
+
+   else
     {
 <p>
         Please check your email to confirm your account.
 </p>
     }
 }
+ *@
+ <p>
+    Please check your email to confirm your account.
+
+ </p>
+
 

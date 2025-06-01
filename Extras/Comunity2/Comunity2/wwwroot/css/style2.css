@@ -4,14 +4,22 @@ body {
     overflow-x: hidden;
 }
 
+/* «·‘—Ìÿ «·Ã«‰»Ì À«»  */
 .sidebar {
+    position: fixed; /* Â–« ÂÊ «· €ÌÌ— «·√”«”Ì */
+    top: 0;
+    left: 0;
+    height: 100vh;
     width: 250px;
     background-color: #343a40;
     color: white;
     flex-shrink: 0;
     transition: all 0.3s;
+    overflow-y: auto;
+    z-index: 999;
 }
 
+    /* —Ê«»ÿ œ«Œ· «·‘—Ìÿ «·Ã«‰»Ì */
     .sidebar a {
         display: block;
         color: white;
@@ -23,32 +31,43 @@ body {
             background-color: #495057;
         }
 
-
+/* «·„Õ ÊÏ Ì»œ√ »⁄œ «·‘—Ìÿ «·Ã«‰»Ì */
 .content {
+    margin-left: 250px; /* ‰›” ⁄—÷ «·‹ sidebar */
     flex-grow: 1;
     padding: 20px;
     background-color: #f8f9fa;
 }
 
+/* ⁄‰œ  ’€Ì— «·‘—Ìÿ */
 .sidebar-collapsed {
     width: 0;
     overflow: hidden;
 }
+/* “— «·≈ŸÂ«— Ê«·≈Œ›«¡ */
 .toggle-btn {
-    position: absolute;
+    position: fixed; /* €Ì—‰« absolute ≈·Ï fixed */
     top: 10px;
     left: 10px;
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #343a40;
+    color: white;
     z-index: 1000;
+    transition: color 0.3s ease;
+    cursor: pointer; /* ≈÷«›… „ƒ‘— «·Ìœ ⁄‰œ «·„—Ê— */
 }
+
+    .toggle-btn.toggled {
+        color: black;
+    }
+
+
+/* «” Ã«»… ··‘«‘«  «·’€Ì—… */
 @media (max-width: 768px) {
     .sidebar {
-        position: absolute;
-        height: 100%;
-        z-index: 999;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
     }
 
     .sidebar-collapsed {
@@ -56,15 +75,7 @@ body {
     }
 
     .content {
+        margin-left: 0;
         padding: 60px 20px 20px;
     }
 }
-
-.toggle-btn {
-    color: white; /* «··Ê‰ «·√”«”Ì */
-    transition: color 0.3s ease;
-}
-
-    .toggle-btn.toggled {
-        color: black; /* «··Ê‰ ⁄‰œ «·≈€·«ﬁ */
-    }

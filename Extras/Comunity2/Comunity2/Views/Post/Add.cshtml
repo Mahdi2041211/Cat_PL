@@ -1,0 +1,127 @@
+﻿@model Post;
+
+<style>
+    body {
+        background-color: #f5f5f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        padding: 40px;
+    }
+
+    .post-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    h3 {
+        text-align: center;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fafafa;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #888;
+        background-color: #fff;
+    }
+
+    .validation-message {
+        color: #d9534f;
+        font-size: 14px;
+    }
+
+    .btn-submit {
+        background-color: #444;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .btn-submit:hover {
+        background-color: #666;
+    }
+</style>
+
+<form method="post" asp-action="Add" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Text">نص المشكلة</label>
+        <textarea asp-for="Text" class="form-control" rows="6" placeholder="اكتب المشكلة البرمجية هنا..."></textarea>
+        <span asp-validation-for="Text" class="validation-message"></span>
+    </div>
+
+    <div class="form-group">
+        <label>إضافة صور</label>
+        <input type="file" name="files" multiple accept="image/*" class="form-control" onchange="previewImages(event)" />
+    </div>
+
+    <div id="image-preview" class="image-preview"></div>
+    <br>
+
+    <button type="submit" class="btn-submit">نشر المشكلة</button>
+</form>
+
+<style>
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.image-preview img {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+</style>
+
+<script>
+function previewImages(event) {
+    const previewContainer = document.getElementById("image-preview");
+    previewContainer.innerHTML = ""; // تنظيف الصور السابقة
+
+    const files = event.target.files;
+
+    if (files.length === 0) return;
+
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        if (!file.type.startsWith("image/")) continue;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+</script>
+

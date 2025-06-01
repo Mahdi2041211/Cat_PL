@@ -3,7 +3,7 @@ using Comunity2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Comunity2.ServiceUser
+namespace Comunity2.Services.UserService
 {
     public class User_Information
     {
@@ -15,9 +15,9 @@ namespace Comunity2.ServiceUser
             _userManager = userManager;
             _context = context;
         }
-        public async Task<List<Post>>GettAll_Post_For_User(User user)
+        public async Task<List<Post>> GettAll_Post_For_User(User user)
         {
-            var Posts = await _context.posts.Where(u=>u.User_Id==user.Id).ToListAsync();
+            var Posts = await _context.posts.Where(u => u.User_Id == user.Id).ToListAsync();
             return Posts;
         }
 
@@ -30,20 +30,7 @@ namespace Comunity2.ServiceUser
 
 
 
-
-
-
-
         
-
-
-
-
-
-
-
-
-
 
 
 

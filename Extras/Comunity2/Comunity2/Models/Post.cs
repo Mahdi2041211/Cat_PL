@@ -17,7 +17,7 @@ namespace Comunity2.Models
         //هنا كل منشور تابع لمستخدم واحد فقط 
         public string User_Id {get;set;}
         [NotMapped]
-        public IFormFile file { get; set;}
+        public ICollection<IFormFile> files { get; set;}
         //كل منشور له عدة تعليقات 
         public ICollection<Comment> Comments { get; set; }
         //كل منشور يمكن ان يكزن له عدة صور 

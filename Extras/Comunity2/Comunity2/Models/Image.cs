@@ -9,6 +9,6 @@ namespace Comunity2.Models
         //كل صورة تابعة لمنشور واحد 
         public Post Post { set; get; }
         public int Post_Id {  set; get; }
-
+        public byte[]? Picture { set; get; }
     }
 }
