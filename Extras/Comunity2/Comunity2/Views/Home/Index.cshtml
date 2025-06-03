@@ -1,209 +1,122 @@
-﻿@model List<Post>
-
+﻿
+@* Razor Pages - User Posts Feed UI with text, comment likes, add post button, and animated icon *@
 @{
-    ViewData["Title"] = "المنشورات";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    // Example data for demonstration
+    var user = new { Name = "Ahmad Alami", ImageUrl = @"C:\Users\UsEr\Source\Repos\Cat_PL\Extras\Comunity2\Comunity2\wwwroot\image\Image.png" };
+    var posts = new[] {
+        new {
+            Id = 1,
+            UserName = "Sara Khaled",
+            UserImage = "/images/1904670-account-avatar-contact-picture-profile-user-user-icon_122520.jpg",
+            Date = DateTime.Now.AddMinutes(-30),
+            Text = "Enjoying a beautiful day at the park!",
+            Images = new[] { "/image/Image.png", "/image/pp.jpg" },
+            Likes = 12,
+            Comments = 3,
+            Liked = false,
+            CommentsList = new[] {
+                new { Id = 1, User = "Ali", Text = "Great post!", Likes = 2, Liked = false },
+                new { Id = 2, User = "Layla", Text = "Amazing photos!", Likes = 1, Liked = false }
+            }
+        },
+        new {
+            Id = 2,
+            UserName = "Omar Fathi",
+            UserImage = "/images/1904670-account-avatar-contact-picture-profile-user-user-icon_122520.png",
+            Date = DateTime.Now.AddHours(-2),
+            Text = "Check out this awesome sunset!",
+            Images = new[] { "/images/post2a.jpg" },
+            Likes = 5,
+            Comments = 1,
+            Liked = true,
+            CommentsList = new[] {
+                new { Id = 1, User = "Sara", Text = "Wow, beautiful!", Likes = 3, Liked = false }
+            }
+        }
+    };
 }
 
-<style>
-    body {
-        background-color: #f0f0f0;
-        font-family: 'Segoe UI', sans-serif;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Community Feed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	<script src="~/js/jsmainpage.js"></script>
+	<link href="~/css/desginmainpage.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-user">
+            <img src="~/image/1904670-account-avatar-contact-picture-profile-user-user-icon_122520.png" />
+            <span>@user.Name</span>
+        </div>
+        <div class="header-news">
+            <span class="news-anim"><i class="fa-solid fa-bell"></i></span>
+            <i class="fa-solid fa-newspaper"></i> News
+        </div>
+    </div>
+    <button class="add-post-btn" onclick="location.href='@Url.Action("Add","Post")'">
+        <i class="fa fa-plus"></i> إضافة منشور
+    </button>
 
-    .post-card {
-        background-color: #ffffff;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    .post-header {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .post-content {
-        font-size: 16px;
-        margin-top: 10px;
-        color: #555;
-    }
-
-    .likes-section {
-        display: flex;
-        align-items: center;
-        margin-top: 15px;
-    }
-
-    .like-button {
-        background-color: #e0e0e0;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 8px;
-        margin-right: 10px;
-        cursor: pointer;
-        color: #333;
-        transition: background-color 0.3s ease;
-    }
-
-        .like-button:hover {
-            background-color: #ccc;
-        }
-
-    .comments {
-        margin-top: 15px;
-        border-top: 1px solid #ddd;
-        padding-top: 10px;
-    }
-
-    .comment {
-        background-color: #f9f9f9;
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 5px;
-    }
-
-    .add-comment {
-        display: flex;
-        margin-top: 10px;
-    }
-
-        .add-comment input[type="text"] {
-            flex: 1;
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-        }
-
-        .add-comment button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-            .add-comment button:hover {
-                background-color: #45a049;
-            }
-
-    /* تصميم شبكة الصور */
-    .images-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 12px;
-        margin-top: 15px;
-    }
-
-        .images-grid img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-            .images-grid img:hover {
-                transform: scale(1.05);
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            }
-
-    /* Lightbox */
-    #lightbox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0,0,0,0.8);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-    }
-
-        #lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(255,255,255,0.5);
-        }
-</style>
-
-<header>
-    <nav>
-        <a asp-action="Add" asp-controller="Post">Add New Post</a>
-    </nav>
-</header>
-
-<div class="container mt-4">
-    <h2 class="mb-4 text-center">جميع المنشورات</h2>
-
-    @foreach (var post in Model)
-    {
-        <div class="post-card">
-            <div class="post-header">منشور رقم: @post.Id</div>
-            <div class="post-content">@post.Text</div>
-
-            @if (post.Images != null && post.Images.Any())
-            {
-                <div class="images-grid">
-                    @foreach (var image in post.Images)
+    <div class="posts-container">
+        @foreach (var post in posts)
+        {
+            <div class="post-card" id="post-@post.Id">
+                <div class="post-header">
+                    <img src="~/image/1904670-account-avatar-contact-picture-profile-user-user-icon_122520.png" />
+                    <div class="post-header-info">
+                        <span class="username">@post.UserName</span>
+                        <span class="date">@post.Date.ToString("yyyy/MM/dd HH:mm")</span>
+                    </div>
+                </div>
+                <div class="post-images">
+                    @for (int i = 0; i < post.Images.Length; i++)
                     {
-                        // تحويل بايت إلى Base64 لإظهار الصورة
-                        var base64 = Convert.ToBase64String(image.Picture);
-                        var imgSrc = $"data:image/jpeg;base64,{base64}";
-                        <img src="@imgSrc" alt="صورة منشور" onclick="openLightbox('@imgSrc')" />
+                       
                     }
                 </div>
-            }
-
-            <div class="likes-section">
-                <form asp-action="Like" asp-route-id="@post.Id" method="post" style="display:inline;">
-                    <button class="like-button" type="submit">👍 إعجاب</button>
-                </form>
-                <span>@post.Count_Likes إعجابات</span>
+                <div class="post-text">@post.Text</div>
+                <hr class="post-divider" />
+                <div class="post-actions">
+                    <button class="action-btn @(post.Liked ? "liked" : "")" onclick="toggleLike(this)">
+                        <i class="fa@(post.Liked ? "s" : "r") fa-heart"></i>
+                        <span>@post.Likes</span>
+                    </button>
+                    <button class="action-btn" onclick="toggleComments(@post.Id, this)">
+                        <i class="fa-regular fa-comment"></i>
+                        <span>@post.Comments</span>
+                    </button>
+                </div>
+                <div class="post-comments" id="comments-@post.Id" style="display:none;">
+                    @foreach (var comment in post.CommentsList)
+                    {
+                        <div class="comment" id="comment-@post.Id-@comment.Id">
+                            <div class="comment-content"><b>@comment.User:</b> @comment.Text</div>
+                            <div class="comment-actions">
+                                <button class="comment-like-btn @(comment.Liked ? "liked" : "")" onclick="toggleCommentLike(this)">
+                                    <i class="fa@(comment.Liked ? "s" : "r") fa-heart"></i>
+                                    <span>@comment.Likes</span>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    <div class="add-comment">
+                        <input type="text" placeholder="Add a comment..." id="add-comment-input-@post.Id" onkeydown="if(event.key==='Enter'){addComment(@post.Id);}">
+                        <button onclick="addComment(@post.Id)">Add</button>
+                    </div>
+                </div>
             </div>
+        }
+    </div>
 
-            <div class="comments">
-                @* يمكنك تفعيل التعليقات هنا *@
-                @*foreach (var comment in post.Comments)
-            {
-            <div class="comment">@comment.Text</div>
-            }*@
+    <div class="modal" id="imgModal" onclick="closeModal()">
+        <button class="modal-close" onclick="closeModal();event.stopPropagation();"><i class="fa fa-times"></i></button>
+        <img id="modalImg" src="" alt="Preview" />
+    </div>
 
-                <form asp-action="AddComment" method="post" class="add-comment">
-                    <input type="hidden" name="PostId" value="@post.Id" />
-                    <input type="text" name="Text" placeholder="أضف تعليقك..." required />
-                    <button type="submit">تعليق</button>
-                </form>
-            </div>
-        </div>
-    }
-</div>
-
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="عرض الصورة" />
-</div>
-
-<script>
-    function openLightbox(src) {
-        var lightbox = document.getElementById('lightbox');
-        var lightboxImg = document.getElementById('lightbox-img');
-        lightboxImg.src = src;
-        lightbox.style.display = 'flex';
-    }
-
-    function closeLightbox() {
-        var lightbox = document.getElementById('lightbox');
-        lightbox.style.display = 'none';
-    }
-</script>
+   
+</body>
+</html>

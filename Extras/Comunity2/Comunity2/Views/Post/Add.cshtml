@@ -1,127 +1,27 @@
-﻿@model Post;
-
-<style>
-    body {
-        background-color: #f5f5f5;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #333;
-        padding: 40px;
-    }
-
-    .post-container {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    }
-
-    h3 {
-        text-align: center;
-        color: #444;
-        margin-bottom: 20px;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #fafafa;
-        transition: border-color 0.3s ease;
-    }
-
-    .form-control:focus {
-        outline: none;
-        border-color: #888;
-        background-color: #fff;
-    }
-
-    .validation-message {
-        color: #d9534f;
-        font-size: 14px;
-    }
-
-    .btn-submit {
-        background-color: #444;
-        color: #fff;
-        border: none;
-        padding: 12px 20px;
-        font-size: 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        width: 100%;
-    }
-
-    .btn-submit:hover {
-        background-color: #666;
-    }
-</style>
-
-<form method="post" asp-action="Add" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="Text">نص المشكلة</label>
-        <textarea asp-for="Text" class="form-control" rows="6" placeholder="اكتب المشكلة البرمجية هنا..."></textarea>
-        <span asp-validation-for="Text" class="validation-message"></span>
+﻿@model Post
+<form method="post" asp-action="Add" enctype="multipart/form-data" class="post-form shadow-lg rounded-4 p-4 bg-white custom-form animate-form" style="max-width: 600px; margin: 40px auto; border-radius: 32px;">
+    <h2 class="mb-4 text-center fw-bold" style="color:#2d3748; font-size:2.2rem; letter-spacing:1px;">إضافة مشكلة جديدة</h2>
+    <div class="form-group mb-3">
+        <label asp-for="Text" class="form-label" style="font-size:1.3rem; color:#4a5568;">نص المشكلة</label>
+        <textarea asp-for="Text" class="form-control border-2 rounded-4 custom-textarea animate-input" rows="7" placeholder="اكتب المشكلة البرمجية هنا..." style="resize:vertical; font-size:1.25rem; padding:18px 16px;"></textarea>
+        <span asp-validation-for="Text" class="validation-message text-danger mt-1 d-block" style="font-size:1.1rem;"></span>
     </div>
 
-    <div class="form-group">
-        <label>إضافة صور</label>
-        <input type="file" name="files" multiple accept="image/*" class="form-control" onchange="previewImages(event)" />
+    <div class="form-group mb-3">
+        <label class="form-label" style="font-size:1.3rem; color:#4a5568;">إضافة صور</label>
+        <input type="file" name="files" multiple accept="image/*" class="form-control border-2 rounded-4 custom-file animate-input" onchange="previewImages(event)" style="background-color:#f7fafc; font-size:1.1rem; padding:12px 10px;" />
     </div>
 
-    <div id="image-preview" class="image-preview"></div>
-    <br>
+    <div id="image-preview" class="image-preview mb-3" style="display:flex; gap:14px; flex-wrap:wrap;"></div>
 
-    <button type="submit" class="btn-submit">نشر المشكلة</button>
+    <button type="submit" id="submitBtn" class="btn custom-btn w-100 rounded-4" style="font-size:1.3rem; font-weight:700; background:transparent; border:2.5px solid #667eea; color:#667eea; padding:14px 0; box-shadow:none; border-radius: 18px;">نشر المشكلة</button>
 </form>
 
-<style>
-.image-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.image-preview img {
-    max-width: 120px;
-    max-height: 120px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    object-fit: cover;
-}
-</style>
-
-<script>
-function previewImages(event) {
-    const previewContainer = document.getElementById("image-preview");
-    previewContainer.innerHTML = ""; // تنظيف الصور السابقة
-
-    const files = event.target.files;
-
-    if (files.length === 0) return;
-
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-
-        if (!file.type.startsWith("image/")) continue;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            previewContainer.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-    }
-}
-</script>
+<!-- Modal for image preview -->
+<div id="imgModal" class="modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+    <span id="closeModal" style="position:absolute; top:30px; right:40px; color:#fff; font-size:2.5rem; font-weight:bold; cursor:pointer; z-index:10001;">&times;</span>
+    <img id="modalImg" src="" style="max-width:90vw; max-height:85vh; border-radius:24px; box-shadow:0 8px 32px rgba(60,60,120,0.25);" />
+</div>
+<link href="~/css/dsegincreatpost.css" rel="stylesheet" />
+<script src="~/js/jscreatpost.js"></script>
 

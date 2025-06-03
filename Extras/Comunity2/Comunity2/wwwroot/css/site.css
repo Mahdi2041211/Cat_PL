@@ -1,22 +1,161 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    /* Ensure smooth font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
+/* General button styles */
+.btn,
+button,
+input[type="submit"],
+input[type="button"] {
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s, border-color 0.25s, transform 0.15s;
+    cursor: pointer;
+    border-radius: 1.5rem;
+    border: none;
+    background: linear-gradient(90deg, #5a67d8 0%, #667eea 100%);
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(90,103,216,0.08);
+    padding: 0.5rem 1.5rem;
+    outline: none;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: linear-gradient(90deg, #667eea 0%, #5a67d8 100%);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(90,103,216,0.18);
+    border-color: #667eea;
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Share button special style */
+.btn-share {
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    color: #fff;
+    border-radius: 2rem;
+    padding: 0.5rem 1.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 12px rgba(67,233,123,0.10);
+    transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
+}
+
+.btn-share:hover {
+    background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(67,233,123,0.18);
+    transform: translateY(-2px) scale(1.06);
+}
+
+/* Form controls */
+.form-control,
+input,
+textarea,
+select {
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    background: #f9fafb;
+    box-shadow: 0 1px 4px rgba(102,126,234,0.04);
+    padding: 0.5rem 1rem;
+}
+
+.form-control:hover,
+input:hover,
+textarea:hover,
+select:hover,
+.form-control:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #667eea;
+    box-shadow: 0 2px 12px rgba(102,126,234,0.12);
+    outline: none;
+    background: #fff;
+}
+
+/* Card and container styles */
+.shadow-lg,
+.rounded-4,
+.bg-white,
+.card,
+.box,
+.panel {
+    transition: box-shadow 0.25s, border-radius 0.25s, transform 0.15s;
+    border-radius: 1.5rem !important;
+    box-shadow: 0 2px 16px rgba(90,103,216,0.08);
+    background: #fff;
+    border: none;
+}
+
+.shadow-lg:hover,
+.rounded-4:hover,
+.bg-white:hover,
+.card:hover,
+.box:hover,
+.panel:hover {
+    box-shadow: 0 8px 32px rgba(90,103,216,0.16);
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* Image preview and all images */
+.image-preview img,
+img {
+    transition: transform 0.25s, box-shadow 0.25s, border-radius 0.25s;
+    border-radius: 1.25rem;
+    box-shadow: 0 1px 8px rgba(90,103,216,0.08);
+}
+
+.image-preview img:hover,
+img:hover {
+    transform: scale(1.08) rotate(-1deg);
+    box-shadow: 0 6px 24px rgba(90,103,216,0.18);
+    z-index: 2;
+}
+
+/* Add subtle hover to all interactive elements */
+a,
+button,
+input[type="button"],
+input[type="submit"],
+.btn,
+.card,
+.box,
+.panel,
+img {
+    transition: box-shadow 0.2s, transform 0.15s, background 0.2s, color 0.2s;
+}
+
+/* Focus styles for accessibility */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    outline: none;
 }
 
+/* Layout basics */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: linear-gradient(120deg, #f8fafc 0%, #e9ecef 100%);
+    font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+    color: #2d3748;
+}
+
+/* Utility classes for extra rounded corners */
+.rounded-xl {
+    border-radius: 2rem !important;
 }
