@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace Coder.UserControls.Block
 {
-    public partial class Set : UserControl
+    public partial class Set : DragableUC
     {
         public Set()
         {
             InitializeComponent();
             In.Location = new Point(this.Width / 2 - In.Width / 2, 0);
             Out.Location = new Point(this.Width / 2 - Out.Width / 2, this.Height - Out.Height);
+            In.ParentControl = this;
+            Out.ParentControl = this;
         }
 
         private void Value_SizeChanged(object sender, EventArgs e)
@@ -47,11 +49,11 @@ namespace Coder.UserControls.Block
                 switch (Value.MyType)
                 {
                     case ValueBlock.CLc.Type.Number:
-                        variable.Type = Type.Number; break;
+                        variable.Type = ValueBlock.CLc.Type.Number; break;
                     case ValueBlock.CLc.Type.String:
-                        variable.Type = Type.String; break;
+                        variable.Type = ValueBlock.CLc.Type.String; break;
                     case ValueBlock.CLc.Type.Bool:
-                        variable.Type = Type.Bool; break;
+                        variable.Type = ValueBlock.CLc.Type.Bool; break;
                 }
                 variable.Value = Value.Values;
                 if (name != VarName.Text) Manager.Variables.Remove(name);

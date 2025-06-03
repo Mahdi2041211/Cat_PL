@@ -1,6 +1,6 @@
 ﻿namespace Coder.UserControls.Block
 {
-    partial class Set
+    partial class Set : DragableUC
     {
         /// <summary> 
         /// Required designer variable.
@@ -59,8 +59,7 @@
             // 
             In.BackColor = Color.LightBlue;
             In.Location = new Point(106, 0);
-            In.MyControl = null;
-            In.MyType = ValueBlock.Put.Type.Out;
+            In.ParentControl = null;
             In.Name = "In";
             In.Size = new Size(19, 21);
             In.TabIndex = 2;
@@ -90,8 +89,7 @@
             // 
             Out.BackColor = Color.LightGreen;
             Out.Location = new Point(106, 83);
-            Out.MyControl = null;
-            Out.MyType = ValueBlock.Put.Type.In;
+            Out.ParentControl = null;
             Out.Name = "Out";
             Out.Size = new Size(22, 18);
             Out.TabIndex = 5;

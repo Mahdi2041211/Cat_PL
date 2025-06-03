@@ -12,28 +12,20 @@ namespace Coder.UserControls.ValueBlock
 {
     public partial class Put : UserControl
     {
-        Type type;
+        DragableUC TargetBlock;
+        public DragableUC ParentControl {  get; set; }
         [Browsable(true)]
-        public Type MyType
+        public DragableUC.Type ReferenceBlockType
         {
-            get { return type; }
+            get { return TargetBlock.MyType; }
             set
             {
-                type = value;
-                _ = type == Type.In ? BackColor = Color.LightGreen : BackColor = Color.LightBlue;
+                TargetBlock.MyType = value;
             }
-        }
-        public Control MyControl {  get; set; }
-        public Put(Type type, Control control) : base()
-        {
-            this.MyType = type;
-            MyControl = control;
         }
         public Put()
         {
             InitializeComponent();
-            MyType = Type.In;
-            BackColor = Color.LightGreen;
         }
         public enum Type { In = 0, Out = 1 };
     }

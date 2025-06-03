@@ -16,13 +16,12 @@ namespace Coder.UserControls
     public class Variable
     {
         public object Value { get; set; }
-        public Type Type { get; set; }
+        public ValueBlock.CLc.Type Type { get; set; }
         public Variable() { }
-        public Variable(object value, Type type)
+        public Variable(object value, ValueBlock.CLc.Type type)
         {
             Value = value;
             Type = type;
         }
     }
-    public enum Type { Number = 0, String = 1, Bool = 2 }
 }
