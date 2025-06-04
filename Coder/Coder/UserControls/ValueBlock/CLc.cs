@@ -41,26 +41,30 @@ namespace Coder.UserControls.ValueBlock
                 default: return new string[0];
             }
         }
-        string[] FillCombosItems()
+
+        void GetItems(object sender, EventArgs e)
         {
+            ComboBox combo = sender as ComboBox;
+            combo.Items.Clear();
             switch (myType)
             {
                 case Type.Number:
-                    return new string[0];
                 case Type.String:
-                    return new string[0];
+                    combo.Items.AddRange(Manager.GetVariablesByType((Type)myType));
+                    break;
                 case Type.Bool:
-                    return new string[] { "True", "False" };
-                default: return new string[0];
+                    combo.Items.AddRange(Manager.GetVariablesByType((Type)myType));
+                    combo.Items.AddRange( new string[]{ "True", "False" });
+                    break;
             }
         }
         ComboBox NewComboBox(Point point)
         {
             ComboBox NewValue = new ComboBox();
             NewValue.Size = new Size(83, 23);
-            NewValue.Items.AddRange(FillCombosItems());
             NewValue.Leave += LeaveComboText;
             NewValue.Location = point;
+            NewValue.DropDown += GetItems;
             if (myType == Type.Bool)
             {
                 NewValue.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -91,12 +95,16 @@ namespace Coder.UserControls.ValueBlock
             switch (myType)
             {
                 case Type.Number:
-                    if (!double.TryParse(comboBox.Text, out double IsDouble))
+                    if (!(double.TryParse(comboBox.Text, out double IsDouble) || comboBox.Items.IndexOf(comboBox.Text) < 0))
                     {
                         MessageBox.Show("أدخل أرقاما فقط", "إدخال خاطئ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         comboBox.Text = "0";
                     }
                     break;
+                case Type.Bool:
+                    if (comboBox.Items.IndexOf(comboBox.Text) < 0)
+                        MessageBox.Show("أدخل القيمة المنطقية", "إدخال خاطئ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    comboBox.Text = comboBox.Items[0].ToString(); break;
             }
         }
 

@@ -28,46 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            set1 = new Coder.UserControls.Block.Set();
-            listBox1 = new ListBox();
-            set2 = new Coder.UserControls.Block.Set();
+            condition1 = new Coder.UserControls.ValueBlock.Condition();
             SuspendLayout();
             // 
-            // set1
+            // condition1
             // 
-            set1.BorderStyle = BorderStyle.FixedSingle;
-            set1.Location = new Point(171, 84);
-            set1.Name = "set1";
-            set1.Size = new Size(269, 102);
-            set1.TabIndex = 0;
-            set1.Leave += set1_Leave_2;
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(12, 56);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(120, 304);
-            listBox1.TabIndex = 2;
-            // 
-            // set2
-            // 
-            set2.BorderStyle = BorderStyle.FixedSingle;
-            set2.Location = new Point(171, 246);
-            set2.Name = "set2";
-            set2.Size = new Size(269, 102);
-            set2.TabIndex = 3;
-            set2.Leave += set2_Leave;
+            condition1.Location = new Point(149, 123);
+            condition1.Name = "condition1";
+            condition1.Size = new Size(431, 82);
+            condition1.TabIndex = 0;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(939, 450);
-            Controls.Add(set2);
-            Controls.Add(listBox1);
-            Controls.Add(set1);
+            Controls.Add(condition1);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -75,8 +51,6 @@
 
         #endregion
 
-        private UserControls.Block.Set set1;
-        private ListBox listBox1;
-        private UserControls.Block.Set set2;
+        private UserControls.ValueBlock.Condition condition1;
     }
 }

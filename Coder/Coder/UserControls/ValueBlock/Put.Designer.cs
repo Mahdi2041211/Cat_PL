@@ -36,6 +36,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Name = "Put";
             Size = new Size(22, 21);
+            Click += Put_Click;
             ResumeLayout(false);
         }
 

@@ -1,6 +1,6 @@
-﻿namespace Coder.UserControls
+﻿namespace Coder.UserControls.ValueBlock
 {
-    partial class DragableUC
+    partial class Condition
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,21 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            AddConditionBtn = new Button();
             SuspendLayout();
             // 
-            // DragableUC
+            // AddConditionBtn
+            // 
+            AddConditionBtn.Font = new Font("Segoe UI Emoji", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            AddConditionBtn.Location = new Point(357, 14);
+            AddConditionBtn.Name = "AddConditionBtn";
+            AddConditionBtn.Size = new Size(65, 36);
+            AddConditionBtn.TabIndex = 9;
+            AddConditionBtn.Text = "Add";
+            AddConditionBtn.UseVisualStyleBackColor = true;
+            AddConditionBtn.Click += AddConditionBtn_Click;
+            // 
+            // Condition
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BorderStyle = BorderStyle.FixedSingle;
-            Name = "DragableUC";
-            Size = new Size(148, 148);
-            MouseDown += DragableUC_MouseDown;
-            MouseMove += DragableUC_MouseMove;
-            MouseUp += DragableUC_MouseUp;
+            Controls.Add(AddConditionBtn);
+            Name = "Condition";
+            Size = new Size(429, 66);
             ResumeLayout(false);
         }
 
         #endregion
+        private Button AddConditionBtn;
     }
 }
