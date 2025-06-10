@@ -28,29 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            condition1 = new Coder.UserControls.ValueBlock.Condition();
+            button1 = new Button();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
-            // condition1
+            // button1
             // 
-            condition1.Location = new Point(149, 123);
-            condition1.Name = "condition1";
-            condition1.Size = new Size(431, 82);
-            condition1.TabIndex = 0;
+            button1.Location = new Point(275, 83);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(478, 83);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(249, 270);
+            textBox1.TabIndex = 1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(939, 450);
-            Controls.Add(condition1);
+            Controls.Add(textBox1);
+            Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private UserControls.ValueBlock.Condition condition1;
+        private Button button1;
+        private TextBox textBox1;
     }
 }
